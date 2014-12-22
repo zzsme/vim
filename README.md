@@ -1,22 +1,13 @@
 note
 ====
 
-note some thing
-
 ###### A ubuntu vim config
 
-*This teddxt will be italic*
-**This text will be bold**
+**Usage**
 
-
-
-1. Item 1
-2. Item 2
-3. Item 3
-
-
-
-
+1. Download the vimrc file
+2. replace local .vimrc in your home dir
+3. re open a vim
 
 
 ```bash
