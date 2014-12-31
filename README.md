@@ -261,4 +261,9 @@ func! Rungdb()
 	exec "!g++ % -g -o %<"
 	exec "!gdb ./%<"
 endfunc
+
+" 进入粘贴模式，防止vim恶心的自动缩进
+map <F10> :set paste<CR>
+" 退出粘贴模式
+map <F11> :set nopaste<CR>
 ```
