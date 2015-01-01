@@ -1,6 +1,8 @@
 note
 ====
 
+![welcome][1]
+
 ###### A ubuntu vim config
 
 **Usage**
@@ -267,3 +269,5 @@ map <F9> :set paste<CR>
 " 退出粘贴模式
 map <F10> :set nopaste<CR>
 ```
+
+[1]:https://raw.githubusercontent.com/zzsme/note/master/images/lashou.jpg
