@@ -78,7 +78,7 @@ set backspace=2
 set whichwrap+=<,>,h,l 
 
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位） 
-"set mouse=a 
+" set mouse=a 
 set selection=exclusive 
 set selectmode=mouse,key 
 
@@ -155,7 +155,7 @@ set shiftwidth=4
 set expandtab 
 
 " 不要换行 
-"set nowrap 
+" set nowrap 
 
 " 在行和段开始处使用制表符 
 set smarttab 
