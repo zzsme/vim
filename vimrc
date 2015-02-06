@@ -4,8 +4,13 @@
 " 联系邮箱 ufo.think#gmail.com
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
-" 一款主题
+" 几款主题
 colorscheme ron
+"colorscheme torte
+"colorscheme murphy
+"colorscheme desert 
+"colorscheme desert 
+"colorscheme elflord
 
 set fenc=utf-8 
 set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936 
