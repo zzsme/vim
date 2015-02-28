@@ -45,10 +45,6 @@ set iskeyword+=_,$,@,%,#,-
 " 语法高亮 
 syntax on 
 
-" 高亮字符，让其不受100列限制 
-:highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white 
-:match OverLength '\%101v.*' 
-
 " 状态行颜色 
 highlight StatusLine guifg=SlateBlue guibg=Yellow 
 highlight StatusLineNC guifg=Gray guibg=White 
@@ -72,6 +68,11 @@ set wildmenu
 " 在状态行上显示光标所在位置的行号和列号 
 set ruler 
 set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%) 
+
+" 突出显示当前行
+set cursorline
+" 设置魔术
+set magic "除了 $ . * ^ 之外其他元字符都要加反斜杠。
 
 " 命令行（在状态行下）的高度，默认为1，这里是2 
 set cmdheight=1 
