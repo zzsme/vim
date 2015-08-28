@@ -1,8 +1,6 @@
 note
 ====
 
-![welcome][1]
-
 ###### A ubuntu vim config
 
 **Usage**
@@ -12,7 +10,7 @@ note
 3. re open a vim
 
 
-```bash
+```
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " 以下配置来自于网络
 " 作者的系统是 Ubuntu 14.04 LTS
@@ -84,7 +82,7 @@ set ruler
 set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%) 
 
 " 命令行（在状态行下）的高度，默认为1，这里是2 
-set cmdheight=1 
+set cmdheight=2 
 
 " 使回格键（backspace）正常处理indent, eol, start等 
 set backspace=2 
@@ -170,49 +168,83 @@ set shiftwidth=4
 set expandtab 
 
 " 不要换行 
-"set nowrap 
+set nowrap 
 
 " 在行和段开始处使用制表符 
 set smarttab 
 
 "新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java,*.py,*.pl,*.php exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
 func SetTitle() 
-	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#########################################################################") 
-		call append(line("."), "\# File Name: ".expand("%")) 
-		call append(line(".")+1, "\# Author: ufothink") 
-		call append(line(".")+2, "\# mail: ufo.think@gmail.com") 
-		call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
-		call append(line(".")+4, "\#########################################################################") 
-		call append(line(".")+5, "\#!/bin/bash") 
-		call append(line(".")+6, "") 
-	else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: zzs") 
-		call append(line(".")+2, "	> Mail: ufo.think@gmail.com ") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
-		call append(line(".")+5, "")
-	endif
-	if &filetype == 'cpp'
-		call append(line(".")+6, "#include<iostream>")
-		call append(line(".")+7, "using namespace std;")
-		call append(line(".")+8, "")
-	endif
-	if &filetype == 'c'
-		call append(line(".")+6, "#include<stdio.h>")
-		call append(line(".")+7, "")
-	endif
-	if &filetype == 'java'
-		call append(line(".")+6,"public class ".expand("%"))
-		call append(line(".")+7,"")
-	endif
-	"新建文件后，自动定位到文件末尾
-	autocmd BufNewFile * normal G
+    "如果文件类型为.sh文件 
+    if &filetype == 'sh' 
+        call setline(1,"\#########################################################################") 
+        call append(line("."), "\# File Name: ".expand("%")) 
+        call append(line(".")+1, "\# Author: zzs") 
+        call append(line(".")+2, "\# mail: ufo.think@gmail.com") 
+        call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
+        call append(line(".")+4, "\#########################################################################") 
+        call append(line(".")+5, "\#!/bin/bash") 
+        call append(line(".")+6, "") 
+    elseif &filetype == 'python'
+        call setline(1, "#!/usr/bin/env python")
+        call append(line("."), "#coding=utf-8")
+        call append(line(".")+1, "#File Name: ".expand("%"))
+        call append(line(".")+2, "#Author: zzs")
+        call append(line(".")+3, "#Mail: ufo.think@gmail.com")
+        call append(line(".")+4, "#Created Time: ".strftime("%c"))
+        call append(line(".")+5, "") 
+    elseif &filetype == 'perl'
+        call setline(1,"#!/usr/bin/env perl")
+        call append(line("."), "#coding=utf-8")
+        call append(line(".")+1, "#File Name: ".expand("%"))
+        call append(line(".")+2, "#Author: zzs")
+        call append(line(".")+3, "#Mail: ufo.think@gmail.com")
+        call append(line(".")+4, "#Created Time: ".strftime("%c"))
+        call append(line(".")+5, "use strict;") 
+        call append(line(".")+6, "") 
+"    elseif &filetype == 'ruby'
+"        call setline(1, "#!/usr/bin/env ruby")
+"        call append(line("."), "#encoding: utf-8")
+"        call append(line(".")+1, "")
+    elseif &filetype == 'php'
+        call setline (1, "<?php")
+        call append(line("."), "")
+        call append(line(".")+1, "#File Name: ".expand("%"))
+        call append(line(".")+2, "#Author: zzs")
+        call append(line(".")+3, "#Mail: ufo.think@gmail.com")
+        call append(line(".")+4, "#Created Time: ".strftime("%c"))
+        call append(line(".")+5, "")
+    else 
+        call setline(1, "/*************************************************************************") 
+        call append(line("."),   "  > File Name: ".expand("%")) 
+        call append(line(".")+1, "  > Author: zzs") 
+        call append(line(".")+2, "  > Mail: ufo.think@gmail.com") 
+        call append(line(".")+3, "  > Created Time: ".strftime("%c")) 
+        call append(line(".")+4, " ************************************************************************/") 
+        call append(line(".")+5, "")
+    endif
+    if expand("%:e") == 'cpp'
+        call append(line(".")+6, "#include<iostream>")
+        call append(line(".")+7, "using namespace std;")
+        call append(line(".")+8, "")
+    endif
+    if &filetype == 'c'
+        call append(line(".")+6, "#include<stdio.h>")
+        call append(line(".")+7, "")
+    endif
+    if expand("%:e") == 'h'
+        call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
+        call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
+        call append(line(".")+8, "#endif")
+    endif
+    if &filetype == 'java'
+        call append(line(".")+6,"public class ".expand("%:r"))
+        call append(line(".")+7,"")
+    endif
+    "新建文件后，自动定位到文件末尾
+    autocmd BufNewFile * normal G
 endfunc 
 
 
@@ -238,36 +270,40 @@ map <C-F3> \be
 "C，C++ 按F5编译运行
 map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!java %<"
-	elseif &filetype == 'sh'
-		:!./%
-	elseif &filetype == 'py'
-		exec "!python %"
-		exec "!python %<"
-	endif
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'java' 
+        exec "!javac %" 
+        exec "!java %<"
+    elseif &filetype == 'sh'
+        :!./%
+    elseif &filetype == 'go'
+"        exec "!go build %<"
+        exec "!time go run %"       
+    elseif &filetype == 'py'
+        exec "!python %"
+        exec "!python %<"
+    elseif &filetype == 'pl'
+        exec "!perl %"
+        exec "!perl %<"         
+    endif
 endfunc
 
 "C,C++的调试
 map <F8> :call Rungdb()<CR>
 func! Rungdb()
-	exec "w"
-	exec "!g++ % -g -o %<"
-	exec "!gdb ./%<"
+    exec "w"
+    exec "!g++ % -g -o %<"
+    exec "!gdb ./%<"
 endfunc
 
-" 进入粘贴模式，防止vim恶心的自动缩进
+" 进入粘贴模式，防止所粘贴内容遇到注释符号自动缩进（多么痛的领悟）
 map <F9> :set paste<CR>
 " 退出粘贴模式
 map <F10> :set nopaste<CR>
 ```
-
-[1]:https://raw.githubusercontent.com/zzsme/note/master/images/lashou.jpg
