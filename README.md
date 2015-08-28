@@ -1,13 +1,14 @@
-note
-====
 
-###### A ubuntu vim config
+# A ubuntu vim config
 
 **Usage**
 
-1. Download the vimrc file
+1. Download the vimrc file 
+    **(link)[https://github.com/zzsme/vim/blob/master/vimrc]**
 2. replace local .vimrc in your home dir
+    mv vimrc ~/.vimrc 
 3. re open a vim
+    vim xx.sh
 
 
 ```bash
