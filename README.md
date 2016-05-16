@@ -89,7 +89,7 @@ set ruler
 set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%) 
 
 " 命令行（在状态行下）的高度，默认为1，这里是2 
-set cmdheight=2 
+set cmdheight=1 
 
 " 使回格键（backspace）正常处理indent, eol, start等 
 set backspace=2 
