@@ -167,6 +167,56 @@ if has('win32')
   set guifontwide=Microsoft_YaHei_Mono:h12
 endif
 
+
+
+nmap <leader>w :w!<cr>
+nmap <leader>f :find<cr>
+
+nnoremap <F2> :g/^\s*$/d<CR>            " 去空行
+nnoremap <C-F2> :vert diffsplit         " 比较文件
+
+map <C-A> ggVGY                         " 映射全选+复制 ctrl+a
+map! <C-A> <Esc>ggVGY
+"map <F12> gg=G                          " 回到行首
+vmap <C-c> "+y                          " 选中状态下 Ctrl+c 复制
+map <M-F2> :tabnew<CR>                  " 新建标签
+map <F3> :tabnew .<CR>                  " 列出当前目录文件
+map <C-F3> \be                          " 打开树状文件目录
+map <F5> :call CompileRunGcc()<CR>      " C，C++ 按F5编译运行
+map <F9> :set paste<CR>                 " 进入粘贴模式，防止所粘贴内容遇到注释符号自动缩进（多么痛的领悟）
+map <F10> :set nopaste<CR>              " 退出粘贴模式
+map <F8> :call Rungdb()<CR>             " C,C++的调试
+
+func! CompileRunGcc()
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!java %<"
+    elseif &filetype == 'sh'
+        :!./%
+    elseif &filetype == 'go'
+        "        exec "!go build %<"
+        exec "!time go run %"
+    elseif &filetype == 'py'
+        exec "!python %"
+        exec "!python %<"
+    elseif &filetype == 'pl'
+        exec "!perl %"
+        exec "!perl %<"
+    endif
+endfunc
+
+func! Rungdb()
+    exec "w"
+    exec "!g++ % -g -o %<"
+    exec "!gdb ./%<"
+endfunc
 ```
 
 

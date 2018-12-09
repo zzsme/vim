@@ -17,7 +17,7 @@
 
 
 
-```bash
+```vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " VIM基础配置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
@@ -83,8 +83,8 @@ set linespace=0
 set wildmenu 
 
 " 在状态行上显示光标所在位置的行号和列号 
-"set ruler 
-"set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%) 
+set ruler 
+set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%) 
 
 " 命令行（在状态行下）的高度，默认为1，这里是2 
 set cmdheight=1 
@@ -186,8 +186,8 @@ func SetTitle()
     if &filetype == 'sh' 
         call setline(1,"\#########################################################################") 
         call append(line("."), "\# File Name: ".expand("%")) 
-        call append(line(".")+1, "\# Author: zzs") 
-        call append(line(".")+2, "\# mail: ufo.think@gmail.com") 
+        call append(line(".")+1, "\# Author: ") 
+        call append(line(".")+2, "\# mail: ") 
         call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
         call append(line(".")+4, "\#########################################################################") 
         call append(line(".")+5, "\#!/bin/bash") 
@@ -196,36 +196,36 @@ func SetTitle()
         call setline(1, "#!/usr/bin/env python")
         call append(line("."), "#coding=utf-8")
         call append(line(".")+1, "#File Name: ".expand("%"))
-        call append(line(".")+2, "#Author: zzs")
-        call append(line(".")+3, "#Mail: ufo.think@gmail.com")
+        call append(line(".")+2, "#Author: ")
+        call append(line(".")+3, "#Mail: ")
         call append(line(".")+4, "#Created Time: ".strftime("%c"))
         call append(line(".")+5, "") 
     elseif &filetype == 'perl'
         call setline(1,"#!/usr/bin/env perl")
         call append(line("."), "#coding=utf-8")
         call append(line(".")+1, "#File Name: ".expand("%"))
-        call append(line(".")+2, "#Author: zzs")
-        call append(line(".")+3, "#Mail: ufo.think@gmail.com")
+        call append(line(".")+2, "#Author: ")
+        call append(line(".")+3, "#Mail: ")
         call append(line(".")+4, "#Created Time: ".strftime("%c"))
         call append(line(".")+5, "use strict;") 
         call append(line(".")+6, "") 
-"    elseif &filetype == 'ruby'
-"        call setline(1, "#!/usr/bin/env ruby")
-"        call append(line("."), "#encoding: utf-8")
-"        call append(line(".")+1, "")
+        "    elseif &filetype == 'ruby'
+        "        call setline(1, "#!/usr/bin/env ruby")
+        "        call append(line("."), "#encoding: utf-8")
+        "        call append(line(".")+1, "")
     elseif &filetype == 'php'
         call setline (1, "<?php")
         call append(line("."), "")
         call append(line(".")+1, "#File Name: ".expand("%"))
-        call append(line(".")+2, "#Author: zzs")
-        call append(line(".")+3, "#Mail: ufo.think@gmail.com")
+        call append(line(".")+2, "#Author: ")
+        call append(line(".")+3, "#Mail: ")
         call append(line(".")+4, "#Created Time: ".strftime("%c"))
         call append(line(".")+5, "")
     else 
         call setline(1, "/*************************************************************************") 
         call append(line("."),   "  > File Name: ".expand("%")) 
-        call append(line(".")+1, "  > Author: zzs") 
-        call append(line(".")+2, "  > Mail: ufo.think@gmail.com") 
+        call append(line(".")+1, "  > Author: ") 
+        call append(line(".")+2, "  > Mail: ") 
         call append(line(".")+3, "  > Created Time: ".strftime("%c")) 
         call append(line(".")+4, " ************************************************************************/") 
         call append(line(".")+5, "")
@@ -256,20 +256,20 @@ endfunc
 nmap <leader>w :w!<cr>
 nmap <leader>f :find<cr>
 
+nnoremap <F2> :g/^\s*$/d<CR>            " 去空行
+nnoremap <C-F2> :vert diffsplit         " 比较文件
 
 map <C-A> ggVGY                         " 映射全选+复制 ctrl+a
 map! <C-A> <Esc>ggVGY
-map <F12> gg=G
+"map <F12> gg=G                          " 回到行首
 vmap <C-c> "+y                          " 选中状态下 Ctrl+c 复制
-nnoremap <F2> :g/^\s*$/d<CR>            " 去空行
-nnoremap <C-F2> :vert diffsplit         " 比较文件
 map <M-F2> :tabnew<CR>                  " 新建标签
 map <F3> :tabnew .<CR>                  " 列出当前目录文件
 map <C-F3> \be                          " 打开树状文件目录
 map <F5> :call CompileRunGcc()<CR>      " C，C++ 按F5编译运行
 map <F9> :set paste<CR>                 " 进入粘贴模式，防止所粘贴内容遇到注释符号自动缩进（多么痛的领悟）
 map <F10> :set nopaste<CR>              " 退出粘贴模式
-map <F8> :call Rungdb()<CR>             "C,C++的调试
+map <F8> :call Rungdb()<CR>             " C,C++的调试
 
 func! CompileRunGcc()
     exec "w"
@@ -285,7 +285,7 @@ func! CompileRunGcc()
     elseif &filetype == 'sh'
         :!./%
     elseif &filetype == 'go'
-"        exec "!go build %<"
+        "        exec "!go build %<"
         exec "!time go run %"       
     elseif &filetype == 'py'
         exec "!python %"
@@ -301,4 +301,5 @@ func! Rungdb()
     exec "!g++ % -g -o %<"
     exec "!gdb ./%<"
 endfunc
+
 ```
