@@ -59,10 +59,6 @@ set iskeyword+=_,$,@,%,#,-
 " 语法高亮 
 syntax on 
 
-" 高亮字符，让其不受100列限制 
-:highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white 
-:match OverLength '\%101v.*' 
-
 " 状态行颜色 
 highlight StatusLine guifg=SlateBlue guibg=Yellow 
 highlight StatusLineNC guifg=Gray guibg=White 
