@@ -1,6 +1,6 @@
+Linux bash alias
 
-
-```
+```bash
 alias vi='vim'
 alias ll='ls -alFG'
 alias ls='ls -G'
