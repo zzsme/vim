@@ -1,67 +1,42 @@
 
-# A vim config
-
-**Usage**
-
-1. backup your vimrc file 
-    
-    cp ~/.vimrc ~/.vimrc_bak
-
-2. get the config
-    
-    curl https://raw.githubusercontent.com/zzsme/vim/master/vimrc > ~/.vimrc
-
-3. or use
-    
-    git clone https://github.com/zzs/vim.git
-    ln -s vim/vimrc ~/.vimrc
-
-
-
-```vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-" VIM基础配置
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-
-" 一款主题
 colorscheme ron
 
-set fenc=utf-8 
-set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936 
+set fenc=utf-8
+set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
 
-" 不要使用vi的键盘模式，而是vim自己的 
-set nocompatible 
+" 不要使用vi的键盘模式，而是vim自己的
+set nocompatible
 
-" history文件中需要记录的行数 
-set history=100 
+" history文件中需要记录的行数
+set history=100
 
-" 在处理未保存或只读文件的时候，弹出确认 
-set confirm 
+" 在处理未保存或只读文件的时候，弹出确认
+set confirm
 
-" 与windows共享剪贴板 
-set clipboard+=unnamed 
+" 与windows共享剪贴板
+set clipboard+=unnamed
 
-" 侦测文件类型 
-filetype on 
+" 侦测文件类型
+filetype on
 
-" 载入文件类型插件 
-filetype plugin on 
+" 载入文件类型插件
+filetype plugin on
 
-" 为特定文件类型载入相关缩进文件 
-filetype indent on 
+" 为特定文件类型载入相关缩进文件
+filetype indent on
 
-" 保存全局变量 
-set viminfo+=! 
+" 保存全局变量
+set viminfo+=!
 
-" 带有如下符号的单词不要被换行分割 
-set iskeyword+=_,$,@,%,#,- 
+" 带有如下符号的单词不要被换行分割
+set iskeyword+=_,$,@,%,#,-
 
-" 语法高亮 
-syntax on 
+" 语法高亮
+syntax on
 
-" 高亮字符，让其不受100列限制 
-:highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white 
-:match OverLength '\%101v.*' 
+" 高亮字符，让其不受100列限制
+:highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
+:match OverLength '\%101v.*'
 
 " 状态行颜色 
 highlight StatusLine guifg=SlateBlue guibg=Yellow 
@@ -127,72 +102,72 @@ set matchtime=5
 set ignorecase 
 
 " 不要高亮被搜索的句子（phrases） 
-set nohlsearch 
+set nohlsearch
 
-" 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索） 
-set incsearch 
+" 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索）
+set incsearch
 
-" 输入:set list命令是应该显示些啥？ 
-set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$ 
+" 输入:set list命令是应该显示些啥？
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
 
-" 光标移动到buffer的顶部和底部时保持3行距离 
-set scrolloff=3 
+" 光标移动到buffer的顶部和底部时保持3行距离
+set scrolloff=3
 
-" 不要闪烁 
-set novisualbell 
+" 不要闪烁
+set novisualbell
 
-" 我的状态行显示的内容（包括文件类型和解码） 
-set statusline=%F%m%r%h%w\[POS=%l,%v][%p%%]\%{strftime(\"%d/%m/%y\ -\ %H:%M\")} 
+" 我的状态行显示的内容（包括文件类型和解码）
+set statusline=%F%m%r%h%w\[POS=%l,%v][%p%%]\%{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 
-" 总是显示状态行 
-set laststatus=2 
+" 总是显示状态行
+set laststatus=2
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-" 文本格式和排版 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 文本格式和排版
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" 自动格式化 
-set formatoptions=tcrqn 
+" 自动格式化
+set formatoptions=tcrqn
 
-" 继承前一行的缩进方式，特别适用于多行注释 
-set autoindent 
+" 继承前一行的缩进方式，特别适用于多行注释
+set autoindent
 
-" 为C程序提供自动缩进 
-set smartindent 
+" 为C程序提供自动缩进
+set smartindent
 
-" 使用C样式的缩进 
-set cindent 
+" 使用C样式的缩进
+set cindent
 
-" 制表符为4 
-set tabstop=4 
+" 制表符为4
+set tabstop=4
 
-" 统一缩进为4 
-set softtabstop=4 
-set shiftwidth=4 
+" 统一缩进为4
+set softtabstop=4
+set shiftwidth=4
 
-" 用空格代替制表符 
-set expandtab 
+" 用空格代替制表符
+set expandtab
 
-" 不要换行 
-set nowrap 
+" 不要换行
+set nowrap
 
-" 在行和段开始处使用制表符 
-set smarttab 
+" 在行和段开始处使用制表符
+set smarttab
 
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java,*.py,*.pl,*.php exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
-    "如果文件类型为.sh文件 
-    if &filetype == 'sh' 
-        call setline(1,"\#########################################################################") 
-        call append(line("."), "\# File Name: ".expand("%")) 
-        call append(line(".")+1, "\# Author: ") 
-        call append(line(".")+2, "\# mail: ") 
-        call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
-        call append(line(".")+4, "\#########################################################################") 
-        call append(line(".")+5, "\#!/bin/bash") 
-        call append(line(".")+6, "") 
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java,*.py,*.pl,*.php exec ":call SetTitle()"
+""定义函数SetTitle，自动插入文件头
+func SetTitle()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1,"\#########################################################################")
+        call append(line("."), "\# File Name: ".expand("%"))
+        call append(line(".")+1, "\# Author: ")
+        call append(line(".")+2, "\# mail: ")
+        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+4, "\#########################################################################")
+        call append(line(".")+5, "\#!/bin/bash")
+        call append(line(".")+6, "")
     elseif &filetype == 'python'
         call setline(1, "#!/usr/bin/env python")
         call append(line("."), "#coding=utf-8")
@@ -200,7 +175,7 @@ func SetTitle()
         call append(line(".")+2, "#Author: ")
         call append(line(".")+3, "#Mail: ")
         call append(line(".")+4, "#Created Time: ".strftime("%c"))
-        call append(line(".")+5, "") 
+        call append(line(".")+5, "")
     elseif &filetype == 'perl'
         call setline(1,"#!/usr/bin/env perl")
         call append(line("."), "#coding=utf-8")
@@ -208,8 +183,8 @@ func SetTitle()
         call append(line(".")+2, "#Author: ")
         call append(line(".")+3, "#Mail: ")
         call append(line(".")+4, "#Created Time: ".strftime("%c"))
-        call append(line(".")+5, "use strict;") 
-        call append(line(".")+6, "") 
+        call append(line(".")+5, "use strict;")
+        call append(line(".")+6, "")
         "    elseif &filetype == 'ruby'
         "        call setline(1, "#!/usr/bin/env ruby")
         "        call append(line("."), "#encoding: utf-8")
@@ -223,12 +198,12 @@ func SetTitle()
         call append(line(".")+4, "#Created Time: ".strftime("%c"))
         call append(line(".")+5, "")
     else 
-        call setline(1, "/*************************************************************************") 
-        call append(line("."),   "  > File Name: ".expand("%")) 
-        call append(line(".")+1, "  > Author: ") 
-        call append(line(".")+2, "  > Mail: ") 
-        call append(line(".")+3, "  > Created Time: ".strftime("%c")) 
-        call append(line(".")+4, " ************************************************************************/") 
+        call setline(1, "/*************************************************************************")
+        call append(line("."),   "  > File Name: ".expand("%"))
+        call append(line(".")+1, "  > Author: ")
+        call append(line(".")+2, "  > Mail: ")
+        call append(line(".")+3, "  > Created Time: ".strftime("%c"))
+        call append(line(".")+4, " ************************************************************************/")
         call append(line(".")+5, "")
     endif
     if expand("%:e") == 'cpp'
@@ -280,20 +255,20 @@ func! CompileRunGcc()
     elseif &filetype == 'cpp'
         exec "!g++ % -o %<"
         exec "! ./%<"
-    elseif &filetype == 'java' 
-        exec "!javac %" 
+    elseif &filetype == 'java'
+        exec "!javac %"
         exec "!java %<"
     elseif &filetype == 'sh'
         :!./%
     elseif &filetype == 'go'
         "        exec "!go build %<"
-        exec "!time go run %"       
+        exec "!time go run %"
     elseif &filetype == 'py'
         exec "!python %"
         exec "!python %<"
     elseif &filetype == 'pl'
         exec "!perl %"
-        exec "!perl %<"         
+        exec "!perl %<"
     endif
 endfunc
 
@@ -303,4 +278,3 @@ func! Rungdb()
     exec "!gdb ./%<"
 endfunc
 
-```
