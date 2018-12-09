@@ -1,5 +1,5 @@
 
-# A ubuntu vim config
+# A vim config
 
 **Usage**
 
